@@ -43,14 +43,15 @@ class HomePage extends State<TheMoviesCornerApp> {
         appBar: AppBar(
           title: Text(title),
         ),
-        body: Container(
-          margin: EdgeInsets.symmetric(vertical: 20.0),
-          height: 350.0,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: movies.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
+        body: ListView(children: <Widget>[
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 5.0),
+            height: 350.0,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: movies.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
                     width: 210.0,
                     height: 200.0,
                     margin: const EdgeInsets.all(8.0),
@@ -61,9 +62,43 @@ class HomePage extends State<TheMoviesCornerApp> {
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     ),
-                );
-              }),
-        ),
+                    child: Icon(
+                      Icons.info_outline,
+                      color: Colors.white,
+                      size: 30.0,
+                    ),
+                    alignment: FractionalOffset.bottomRight,
+                  );
+                }),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 20.0),
+            height: 450.0,
+            child: GridView.count(
+                scrollDirection: Axis.vertical,
+                crossAxisCount: 2,
+                childAspectRatio: 2,
+                children: movies.map((String url) {
+                  return Container(
+                    height: 20,
+                    margin: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(url),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Icon(
+                      Icons.info_outline,
+                      color: Colors.white,
+                      size: 20.0,
+                    ),
+                    alignment: FractionalOffset.bottomRight,
+                  );
+                }).toList()),
+          )
+        ]),
         bottomNavigationBar:
             CustomBottomNavigationBar(_selectedTabIndex, _onItemTapped),
       ),
