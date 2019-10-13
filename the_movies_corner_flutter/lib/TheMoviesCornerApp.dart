@@ -41,7 +41,22 @@ class HomePage extends State<TheMoviesCornerApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(
+              title),
+          leading: IconButton(
+            onPressed: () => print('Menu'),
+            icon: Icon(Icons.menu),
+            iconSize: 30.0,
+            color: customAppTheme.accentColor,
+          ),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () => print('Search'),
+              icon: Icon(Icons.search),
+              iconSize: 30.0,
+              color: customAppTheme.accentColor,
+            )
+          ],
         ),
         body: ListView(children: <Widget>[
           Container(
