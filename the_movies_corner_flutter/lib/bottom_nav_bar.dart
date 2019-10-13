@@ -38,6 +38,8 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       ],
       currentIndex: widget._selectedTabIndex,
       onTap: widget._onItemTapped,
+      selectedItemColor: customAppTheme.accentColor,
+      unselectedItemColor: customAppTheme.primaryColorLight.withOpacity(0.5),
     );
   }
 }
